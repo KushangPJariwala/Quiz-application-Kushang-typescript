@@ -8,7 +8,7 @@ import { quizActions } from "../store/quiz-slice";
 type Props = {};
 
 export default function Timer({}: Props) {
-  const time = useSelector((state: RootState) => state.quiz.time);
+  const time = useSelector((state: RootState) => state.quiz.time) || NaN;
   const dispatch = useDispatch();
 
   const [seconds, setSeconds] = useState(time * 60);
@@ -74,7 +74,7 @@ export default function Timer({}: Props) {
 
         {/* Timer on the right side */}
         <Typography variant="h6" component="div" sx={{ fontWeight: 700 }}>
-          Time Remains: {time === 0 ? "--:--" : formatTime(seconds)}
+          Time Remains: {isNaN(time) ? "--:--" : formatTime(seconds)}
         </Typography>
       </Toolbar>
     </AppBar>
